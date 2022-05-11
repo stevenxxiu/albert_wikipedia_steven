@@ -7,7 +7,6 @@ Synopsis: <trigger> <filter>'''
 import json
 import os
 import time
-from locale import getdefaultlocale
 from urllib import parse, request
 
 from albert import ClipAction, Item, UrlAction, iconLookup  # pylint: disable=import-error
@@ -22,20 +21,6 @@ DEFAULT_ICON_PATH = iconLookup('wikipedia') or os.path.dirname(__file__) + '/wik
 BASE_URL = 'https://en.wikipedia.org/w/api.php'
 USER_AGENT = 'org.albert.extension.python.wikipedia'
 LIMIT = 20
-
-
-def initialize():
-    global BASE_URL  # pylint: disable=global-statement
-    params = {'action': 'query', 'meta': 'siteinfo', 'utf8': 1, 'siprop': 'languages', 'format': 'json'}
-
-    get_url = f'{BASE_URL}?{parse.urlencode(params)}'
-    req = request.Request(get_url, headers={'User-Agent': USER_AGENT})
-    with request.urlopen(req) as response:
-        data = json.loads(response.read().decode('utf-8'))
-        languages = [lang['code'] for lang in data['query']['languages']]
-        local_lang_code = getdefaultlocale()[0][0:2]
-        if local_lang_code in languages:
-            BASE_URL = BASE_URL.replace('en', local_lang_code)
 
 
 def handleQuery(query):
