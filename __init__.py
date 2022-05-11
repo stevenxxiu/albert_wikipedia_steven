@@ -5,8 +5,8 @@
 Synopsis: <trigger> <filter>'''
 
 import json
-import os
 import time
+from pathlib import Path
 from urllib import parse, request
 
 from albert import ClipAction, Item, UrlAction, iconLookup  # pylint: disable=import-error
@@ -17,7 +17,7 @@ __version__ = '0.4.4'
 __triggers__ = 'wiki '
 __authors__ = 'manuelschneid3r'
 
-DEFAULT_ICON_PATH = iconLookup('wikipedia') or os.path.dirname(__file__) + '/wikipedia.svg'
+ICON_PATH = iconLookup('wikipedia') or str(Path(__file__).parent / 'icons/wikipedia.svg')
 BASE_URL = 'https://en.wikipedia.org/w/api.php'
 USER_AGENT = 'org.albert.extension.python.wikipedia'
 LIMIT = 20
@@ -37,9 +37,7 @@ def handleQuery(query):
     stripped = query.string.strip()
 
     if not stripped:
-        return Item(
-            id=__title__, icon=DEFAULT_ICON_PATH, text=__title__, subtext='Enter a query to search on Wikipedia'
-        )
+        return Item(id=__title__, icon=ICON_PATH, text=__title__, subtext='Enter a query to search on Wikipedia')
 
     results = []
 
@@ -58,7 +56,7 @@ def handleQuery(query):
             results.append(
                 Item(
                     id=__title__,
-                    icon=DEFAULT_ICON_PATH,
+                    icon=ICON_PATH,
                     text=title,
                     subtext=summary if summary else url,
                     completion=title,
