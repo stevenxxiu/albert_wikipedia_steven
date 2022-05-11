@@ -12,10 +12,10 @@ from urllib import parse, request
 from albert import ClipAction, Item, UrlAction, iconLookup  # pylint: disable=import-error
 
 
-__title__ = 'Wikipedia'
-__version__ = '0.4.4'
+__title__ = 'Wikipedia User'
+__version__ = '0.4.5'
 __triggers__ = 'wiki '
-__authors__ = 'manuelschneid3r'
+__authors__ = ['Steven Xu', 'manuelschneid3r']
 
 ICON_PATH = iconLookup('wikipedia') or str(Path(__file__).parent / 'icons/wikipedia.svg')
 BASE_URL = 'https://en.wikipedia.org/w/api.php'
