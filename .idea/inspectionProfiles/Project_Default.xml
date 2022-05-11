@@ -568,15 +568,11 @@
     <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredIdentifiers">
         <list>
-          <option value="numpy.random.RandomState" />
-          <option value="int.__getitem__" />
-          <option value="scipy.special.expit" />
-          <option value="tensorflow.python.ops.variables.Variable.__div__" />
-          <option value="tensorflow.python.ops.variables.Variable.__sub__" />
-          <option value="float.set_shape" />
-          <option value="float.get_shape" />
-          <option value="list.pop" />
-          <option value="youtube_user.albert" />
+          <option value="albert" />
+          <option value="iconLookup" />
+          <option value="ClipAction" />
+          <option value="Item" />
+          <option value="UrlAction" />
         </list>
       </option>
     </inspection_tool>
